@@ -1,0 +1,65 @@
+<style>
+        /* -----------------------------------------------------------
+         * 1.1 CUSTOM COLOR VARIABLES & BASE RESET
+         * ----------------------------------------------------------- */
+        :root {
+            --bg-dark: #0f172a;          /* Slate 900 background */
+            --card-bg: #1e293b;          /* Slate 800 cards */
+            --accent-primary: #6366f1;   /* Indigo theme accent */
+            --accent-secondary: #8b5cf6; /* Purple theme accent */
+            --status-got-it: #10b981;    /* Emerald green */
+            --status-fuzzy: #f59e0b;     /* Amber yellow */
+            --status-lost: #ef4444;      /* Red/Rose */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+        }
+
+        /* -----------------------------------------------------------
+         * 1.2 ANIMATIONS & SMOOTH TRANSITIONS
+         * ----------------------------------------------------------- */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .transition-all-custom {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hover scale effect for cards */
+        .hover-card-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
