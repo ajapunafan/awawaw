@@ -1,65 +1,63 @@
-<style>
-        /* -----------------------------------------------------------
-         * 1.1 CUSTOM COLOR VARIABLES & BASE RESET
-         * ----------------------------------------------------------- */
-        :root {
-            --bg-dark: #0f172a;          /* Slate 900 background */
-            --card-bg: #1e293b;          /* Slate 800 cards */
-            --accent-primary: #6366f1;   /* Indigo theme accent */
-            --accent-secondary: #8b5cf6; /* Purple theme accent */
-            --status-got-it: #10b981;    /* Emerald green */
-            --status-fuzzy: #f59e0b;     /* Amber yellow */
-            --status-lost: #ef4444;      /* Red/Rose */
-        }
+/* =====================================================================
+   CLARITYCHECK - CUSTOM CSS STYLESHEET
+   ===================================================================== */
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: #f8fafc;
-        }
+/* ---------------------------------------------------------------------
+   1. CSS CUSTOM VARIABLES (COLORS & STYLES)
+   --------------------------------------------------------------------- */
+:root {
+    --status-lost: #f43f5e;     /* Rose red for confused state */
+    --status-fuzzy: #f59e0b;    /* Amber yellow for uncertain state */
+    --status-got-it: #10b981;   /* Emerald green for understood state */
+    --card-bg: #1e293b;         /* Slate 800 background */
+}
 
-        /* -----------------------------------------------------------
-         * 1.2 ANIMATIONS & SMOOTH TRANSITIONS
-         * ----------------------------------------------------------- */
-        .fade-in {
-            animation: fadeIn 0.3s ease-in-out forwards;
-        }
+/* ---------------------------------------------------------------------
+   2. CUSTOM ANIMATIONS & TRANSITIONS
+   --------------------------------------------------------------------- */
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Smooth fade-in effect when switching views or loading content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .transition-all-custom {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
 
-        /* Hover scale effect for cards */
-        .hover-card-lift:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
-        }
+/* Hover lift transition for interactive cards */
+.topic-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
 
-        /* Custom scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+.topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------------------------------------------------------------------
+   3. CUSTOM SCROLLBAR DESIGN
+   --------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
