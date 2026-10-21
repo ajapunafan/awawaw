@@ -1,189 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClarityCheck - Interactive Student & Teacher Dashboard</title>
+    <title>ClarityCheck - Student & Teacher Understanding Portal</title>
     
-    <!-- Tailwind CSS CDN for modern responsive layout utilities -->
+    <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans antialiased">
 
- <!-- 2.1 APP HEADER & ROLE SWITCHER -->
-    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700 sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center flex-wrap gap-3">
-            <!-- App Logo & Title -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/30">
-                    <i class="fa-solid fa-brain"></i>
+    <!-- ================================================================= -->
+    <!-- HEADER & NAVIGATION                                                -->
+    <!-- ================================================================= -->
+    <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <!-- App Logo and Tagline -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-xl text-white shadow-lg shadow-indigo-500/30">
+                    C
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-                        ClarityCheck
-                        <span id="role-badge" class="text-xs bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-2.5 py-0.5 rounded-full font-medium">Student Mode</span>
-                    </h1>
-                    <p class="text-xs text-slate-400">Bridge the gap between teaching and understanding</p>
+                    <h1 class="text-xl font-bold tracking-tight text-white">ClarityCheck</h1>
+                    <p class="text-xs text-slate-400">Classroom Understanding & Quiz Portal</p>
                 </div>
             </div>
 
-            <!-- Role Switcher (Student vs Teacher View) -->
-            <div class="bg-slate-900 p-1 rounded-xl border border-slate-700 flex items-center space-x-1">
-                <button id="btn-student-view" onclick="switchRole('student')" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all-custom bg-indigo-600 text-white shadow">
-                    <i class="fa-solid fa-user-graduate mr-1.5"></i> Student View
+            <!-- Role Switcher (Student / Teacher Mode Toggle) -->
+            <div class="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-700">
+                <button id="btn-student-view" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-indigo-600 text-white shadow-md">
+                    Student View
                 </button>
-                <button id="btn-teacher-view" onclick="switchRole('teacher')" class="px-4 py-1.5 rounded-lg text-sm font-medium transition-all-custom text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-chart-pie mr-1.5"></i> Teacher View
+                <button id="btn-teacher-view" class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white">
+                    Teacher View
                 </button>
             </div>
+            
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-8">
+    <!-- ================================================================= -->
+    <!-- MAIN CONTENT CONTAINER                                            -->
+    <!-- ================================================================= -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
 
-        <!-- 2.2 STUDENT DASHBOARD VIEW -->
-        <div id="student-view" class="space-y-8 fade-in">
+        <!-- ------------------------------------------------------------- -->
+        <!-- VIEW 1: STUDENT DASHBOARD                                     -->
+        <!-- ------------------------------------------------------------- -->
+        <section id="student-view" class="space-y-6">
             
             <!-- Student Banner -->
-            <div class="bg-gradient-to-r from-indigo-900/40 via-slate-800 to-purple-900/30 border border-indigo-500/30 rounded-2xl p-6 shadow-xl">
-                <div class="max-w-2xl space-y-2">
-                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                        How are today's topics clicking? 💡
-                    </h2>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Tap your understanding level for each topic below. If you're lost or fuzzy, click 
-                        <strong class="text-purple-300">"Explain Simple"</strong> for instant breakdowns or take a quick micro-quiz to test yourself!
-                    </p>
-                </div>
+            <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-lg">
+                <h2 class="text-2xl font-bold text-white mb-2">Physics 101: Newton's Laws & Energy</h2>
+                <p class="text-slate-400 text-sm">
+                    Select your understanding level for each topic. Take short quizzes to test yourself or get simplified explanations whenever you hit a wall!
+                </p>
             </div>
 
-            <!-- Topic Check-in Grid Section -->
-            <section class="space-y-4">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-indigo-400"></i> Active Lesson Topics
-                    </h3>
-                    <span class="text-xs bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-slate-400">Physics 101 • Unit 4</span>
-                </div>
+            <!-- Topics List Container -->
+            <div id="topics-list" class="grid grid-cols-1 gap-6">
+                <!-- Topic cards will be dynamically injected here by JavaScript -->
+            </div>
+        </section>
 
-                <!-- Topic Cards Container (Populated by JS) -->
-                <div id="topics-list" class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <!-- Cards are dynamically injected via JavaScript -->
-                </div>
-            </section>
-
-            <!-- Interactive Micro-Quiz Section -->
-            <section id="quiz-section" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
-                <div class="flex justify-between items-center border-b border-slate-700/80 pb-4">
-                    <div>
-                        <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Self-Check Micro-Quiz</span>
-                        <h3 id="quiz-title" class="text-xl font-bold text-white">Select a Topic Above to Start Quiz</h3>
-                    </div>
-                    <span id="quiz-progress" class="text-xs bg-slate-700/80 border border-slate-600 px-3 py-1 rounded-full text-slate-300 font-medium">Question 1 of 3</span>
-                </div>
-
-                <!-- Quiz Interactive Box -->
-                <div id="quiz-container" class="min-h-[220px] flex flex-col justify-center">
-                    <div class="text-center py-8 text-slate-400 space-y-2">
-                        <i class="fa-solid fa-hand-pointer text-3xl text-indigo-400/60 mb-2"></i>
-                        <p>Click on any topic's <strong>"Take Quiz"</strong> button above to start testing your knowledge!</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- 2.3 TEACHER ANALYTICS DASHBOARD VIEW -->
-        <div id="teacher-view" class="space-y-8 hidden fade-in">
+        <!-- ------------------------------------------------------------- -->
+        <!-- VIEW 2: TEACHER ANALYTICS DASHBOARD                            -->
+        <!-- ------------------------------------------------------------- -->
+        <section id="teacher-view" class="hidden space-y-6">
             
-            <!-- Teacher Header Card -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-800 p-6 rounded-2xl border border-slate-700">
-                <div>
-                    <h2 class="text-2xl font-bold text-white">Classroom Understanding Heatmap</h2>
-                    <p class="text-slate-400 text-sm">Aggregated anonymous real-time feedback from 28 students in Physics 101</p>
-                </div>
-                <div class="bg-indigo-900/30 border border-indigo-500/30 px-4 py-2 rounded-xl text-indigo-300 text-xs font-medium flex items-center gap-2">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    Live Syncing Active
+            <!-- Teacher Stats Summary -->
+            <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-lg">
+                <h2 class="text-2xl font-bold text-white mb-2">Classroom Heatmap & Insights</h2>
+                <p class="text-slate-400 text-sm mb-6">
+                    Real-time aggregated confusion data from all students in your class.
+                </p>
+
+                <!-- Stat Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Active Class Size</span>
+                        <p class="text-2xl font-bold text-white mt-1">28 Students</p>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Most Confusing Topic</span>
+                        <p class="text-2xl font-bold text-rose-400 mt-1">Newton's 3rd Law</p>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-700">
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Avg Readiness Score</span>
+                        <p class="text-2xl font-bold text-emerald-400 mt-1">68%</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Class Key Performance Indicators (KPIs) -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-lg">
-                    <p class="text-xs text-slate-400 uppercase tracking-wide font-semibold">Overall Class Readiness</p>
-                    <p class="text-3xl font-extrabold text-emerald-400 mt-2">74%</p>
-                    <p class="text-xs text-slate-400 mt-1">Based on quiz scores & check-ins</p>
-                </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-lg">
-                    <p class="text-xs text-slate-400 uppercase tracking-wide font-semibold">Most Confusing Topic</p>
-                    <p class="text-xl font-bold text-rose-400 mt-2">Free Fall Motion</p>
-                    <p class="text-xs text-rose-300/70 mt-1">45% of class marked as "Lost"</p>
-                </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-lg">
-                    <p class="text-xs text-slate-400 uppercase tracking-wide font-semibold">Student Participation</p>
-                    <p class="text-3xl font-extrabold text-indigo-400 mt-2">28 / 30</p>
-                    <p class="text-xs text-slate-400 mt-1">Check-ins submitted today</p>
+            <!-- Teacher Confusion Breakdown -->
+            <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-4">Topic-by-Topic Breakdown</h3>
+                <div id="teacher-heatmap-container" class="space-y-4">
+                    <!-- Heatmap items will be dynamically generated by JavaScript -->
                 </div>
             </div>
 
-            <!-- Class Confusion Heatmap Bars -->
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
-                <h3 class="text-lg font-semibold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-fire text-amber-400"></i> Real-Time Confusion Heatmap
-                </h3>
-
-                <div id="teacher-heatmap-container" class="space-y-6">
-                    <!-- Heatmap progress bars dynamically injected via JS -->
-                </div>
-            </div>
-        </div>
+        </section>
 
     </main>
 
-    <!-- 2.4 MODAL: "EXPLAIN IT SIMPLE" (AI CONCEPT BREAKDOWN) -->
-    <div id="explain-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden fade-in">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
+    <!-- ================================================================= -->
+    <!-- MODAL: EXPLAIN IT SIMPLE                                          -->
+    <!-- ================================================================= -->
+    <div id="explainer-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
+            
             <!-- Modal Close Button -->
-            <button onclick="closeExplainModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg text-lg">
+                ✕
             </button>
 
-            <!-- Modal Header -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
-                    <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+            <!-- Modal Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                    💡
                 </div>
-                <div>
-                    <span class="text-xs text-purple-400 font-semibold uppercase tracking-wider">Explain It Simple</span>
-                    <h3 id="modal-topic-title" class="text-lg font-bold text-white">Topic Title</h3>
-                </div>
+                <h3 id="modal-title" class="text-xl font-bold text-white">Simple Breakdown</h3>
             </div>
 
-            <!-- Analogy Section -->
-            <div class="bg-slate-900/80 border border-slate-700/60 rounded-xl p-4 space-y-2">
-                <p class="text-xs font-semibold text-purple-300 uppercase tracking-wider">💡 Everyday Analogy</p>
-                <p id="modal-analogy" class="text-slate-200 text-sm leading-relaxed">Analogy text here...</p>
+            <!-- Simplified Explanation Content -->
+            <div id="modal-body" class="text-slate-300 text-sm leading-relaxed space-y-3">
+                <!-- Content inserted via JavaScript -->
             </div>
 
-            <!-- Key Points Section -->
-            <div class="space-y-2">
-                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">📌 Core Takeaways</p>
-                <ul id="modal-keypoints" class="list-disc list-inside text-sm text-slate-300 space-y-1.5">
-                    <!-- Injected dynamically via JS -->
-                </ul>
+            <!-- Modal Footer -->
+            <div class="pt-4 border-t border-slate-700 flex justify-end">
+                <button id="modal-done-btn" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition">
+                    Got it, thanks!
+                </button>
             </div>
-
-            <button onclick="closeExplainModal()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 rounded-xl transition-all-custom text-sm shadow-lg shadow-indigo-600/30">
-                Got it! Back to Lesson
-            </button>
         </div>
     </div>
+
+    <!-- ================================================================= -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================= -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-6 text-center text-xs text-slate-500">
+        ClarityCheck - Developed for Students & Classrooms
+    </footer>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
